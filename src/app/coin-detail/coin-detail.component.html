@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 details">
+            <div class="img">
+                <img [src]="coinData?.image.large" [alt]="coinData?.name + ' icon'">
+            </div>
+            <h3 class="text-center">{{ coinData?.name | uppercase }}</h3>
+            <h2 [innerHtml]="coinData?.description?.en.split('. ')[0] + '.'"></h2>
+            <div class="more-details">
+                <span class="title">Rank: </span>
+                <span class="value">{{ coinData?.market_cap_rank }}</span><br>
+                <span class="title">Current price: </span>
+                <span class="value">{{ coinData?.market_data.current_price.uah | currency }}</span><br>
+                <span class="title">Marcet Cap: </span>
+                <span class="value">{{ coinData?.market_data.market_cap.uah | currency }}</span>
+            </div>
+        </div>
+    </div>
+</div>
