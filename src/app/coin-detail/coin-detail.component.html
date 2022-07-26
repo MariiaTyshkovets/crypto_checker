@@ -1,19 +1,30 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 details">
+<div class="coin">
+    <div class="details">
+        <div class="details-img">
             <div class="img">
                 <img [src]="coinData?.image.large" [alt]="coinData?.name + ' icon'">
             </div>
-            <h3 class="text-center">{{ coinData?.name | uppercase }}</h3>
-            <h2 [innerHtml]="coinData?.description?.en.split('. ')[0] + '.'"></h2>
+            <h3 class="text-center">{{ coinData?.name | uppercase }}</h3>            
+        </div>
+        <div class="coin-info">
+            <p [innerHtml]="coinData?.description?.en.split('. ')[0] + '.'"></p>
             <div class="more-details">
                 <span class="title">Rank: </span>
                 <span class="value">{{ coinData?.market_cap_rank }}</span><br>
                 <span class="title">Current price: </span>
-                <span class="value">{{ coinData?.market_data.current_price.uah | currency }}</span><br>
-                <span class="title">Marcet Cap: </span>
-                <span class="value">{{ coinData?.market_data.market_cap.uah | currency }}</span>
+                <span class="value">{{ currentPrice | currency : currency }}</span><br>
+                <span class="title">Market Cap: </span>
+                <span class="value">{{ currentMarketCap | currency : currency }}</span>
             </div>
+        </div>
+    </div>        
+    <div class="graph">
+        <canvas class="trend-line" baseChart [data]="lineChartData" [options]="lineChartOptions" [type]="lineChartType"></canvas>
+        <div class="d-flex justify-content-around">
+            <button (click)="getGraphData(1)" class="btn btn-custom">24 hours</button>
+            <button (click)="getGraphData(30)" class="btn btn-custom">30 days</button>
+            <button (click)="getGraphData(90)" class="btn btn-custom">3 month</button>
+            <button (click)="getGraphData(365)" class="btn btn-custom">1 year</button>
         </div>
     </div>
 </div>

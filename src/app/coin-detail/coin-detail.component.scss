@@ -1,9 +1,28 @@
+@import '../../styles.scss';
+
 * {
     color: white;
+    box-sizing: border-box;
 }
 
 h3 {
     font-size: 23px;
+}
+
+.coin {
+    min-height: 90vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1.4;
+
+    @include tablet {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 .img {
@@ -11,7 +30,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 10px;
 }
 
 img {
@@ -19,6 +38,57 @@ img {
 }
 
 .details {
+    display: flex;
+    flex-direction: column;
     min-width: 300px;
     padding: 20px;
+    margin-right: 10px;
+
+    .title, .value {
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
+
+    @include tablet {
+        margin-right: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @include phone {
+        flex-direction: column;
+    }
+}
+
+.details-img {
+    @include tablet {
+        margin-right: 20px;
+    }
+}
+
+.graph {
+    width: 98.5%;
+    padding: 0 40px;
+
+    @include phone {
+        padding: 0 10px;
+    }
+}
+
+.btn-custom {
+    margin-top: 10px;
+    color: white;
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 18px;
+    text-transform: uppercase;
+    border: 1px solid white;
+    width: 23%;
+}
+
+.btn-custom:focus,.btn-custom:active {
+    background-color: #3f51b5;
+    font-weight: 700;
+    border: 1px solid  #3f51b5;
 }

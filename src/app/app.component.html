@@ -1,13 +1,11 @@
-<header class="container">
-  <mat-toolbar>
-    <span class="header-title">CRYPTO CHECKER</span>
-    <span class="example-spacer"></span>
-    <mat-form-field class="money">
+<mat-toolbar>
+  <span class="header-title" (click)="goToStart()">CRYPTO CHECKER</span>
+  <span class="example-spacer"></span>
+    <mat-form-field class="money">      
       <mat-select (valueChange)="sendCurrencyMoney($event)" [(ngModel)]="selectedMoney">
-        <mat-option selected value="UAH">UAH</mat-option>
-        <mat-option value="USD">USD</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-toolbar>
-</header>
+      <mat-option selected value="UAH">UAH</mat-option>
+      <mat-option value="USD">USD</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-toolbar>
 <router-outlet></router-outlet>

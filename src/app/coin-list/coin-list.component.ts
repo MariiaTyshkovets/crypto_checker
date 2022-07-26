@@ -4,6 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
+import { CurrencyService } from '../service/currency.service';
 
 
 @Component({
@@ -13,31 +14,36 @@ import { Router } from '@angular/router';
 })
 export class CoinListComponent implements OnInit {
 
-  bannerData: any=[];
-  dataSource!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['symbol', 'current_price', 'price_change_percentage_24h', 'market_cap'];
+  bannerData : any = [];
+  currency : string = 'UAH';
+  dataSource! : MatTableDataSource<any>;
+  displayedColumns : string[] = ['symbol', 'current_price', 'price_change_percentage_24h', 'market_cap'];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  constructor(private api : ApiService, private router : Router) { }
+  @ViewChild(MatPaginator) paginator! : MatPaginator;
+  @ViewChild(MatSort) sort! : MatSort;
+  constructor(private api : ApiService, private router : Router, private currencyService : CurrencyService) { }
 
   ngOnInit(): void {
     this.getBannerData();
     this.getAllData();
+    this.currencyService.getCurrency()
+    .subscribe(val => {
+      this.currency = val;
+      this.getBannerData();
+      this.getAllData();
+    })
   }
 
   getBannerData() {
-    this.api.getTrendingCurrency('UAH')
+    this.api.getTrendingCurrency(this.currency)
     .subscribe(res => {
-      console.log(res);
       this.bannerData = res;
     })
   }
 
   getAllData() {
-    this.api.getCurrency('UAH')
+    this.api.getCurrency(this.currency)
     .subscribe(res => {
-      console.log(res);
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
