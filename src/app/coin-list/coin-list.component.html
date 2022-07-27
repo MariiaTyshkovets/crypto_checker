@@ -9,7 +9,7 @@
                 <marquee behavior="scroll" direction="left" onmouseover="stop()" onmouseout="start()" loop="infinite">
                     <div class="row">
                         <ng-container *ngFor="let item of bannerData">
-                            <div class="card">
+                            <div class="card" (click)="goToDetails(item)">
                                 <img [src]="item.image" width="100" [alt]="item.title + ' icon'" class="img-fluid">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ item.symbol | uppercase }} 
